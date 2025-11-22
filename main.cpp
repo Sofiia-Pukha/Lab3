@@ -20,16 +20,15 @@ const int count_i = 4;
 const int count_j = 9;
 const int count_k = 5;
 
-std::binary_semaphore sem_a{0};
-std::binary_semaphore sem_b{0};
-std::binary_semaphore sem_c{0};
-std::binary_semaphore sem_d{0};
-std::binary_semaphore sem_e{0};
-std::binary_semaphore sem_f{0};
-std::binary_semaphore sem_g{0}; 
-std::binary_semaphore sem_h{0}; 
-std::binary_semaphore sem_i{0};
-
+std::counting_semaphore<10> sem_a{0};
+std::counting_semaphore<10> sem_b{0};
+std::counting_semaphore<10> sem_c{0};
+std::counting_semaphore<10> sem_d{0};
+std::counting_semaphore<10> sem_e{0};
+std::counting_semaphore<10> sem_f{0};
+std::counting_semaphore<10> sem_g{0};
+std::counting_semaphore<10> sem_h{0};
+std::counting_semaphore<10> sem_i{0};
 
 void f(char name, int index) 
 {
