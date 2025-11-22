@@ -20,20 +20,20 @@ const int count_i = 4;
 const int count_j = 9;
 const int count_k = 5;
 
-std::counting_semaphore<10> sem_a{0};
-std::counting_semaphore<10> sem_b{0};
-std::counting_semaphore<10> sem_c{0};
-std::counting_semaphore<10> sem_d{0};
-std::counting_semaphore<10> sem_e{0};
-std::counting_semaphore<10> sem_f{0};
-std::counting_semaphore<10> sem_g{0};
-std::counting_semaphore<10> sem_h{0};
-std::counting_semaphore<10> sem_i{0};
+counting_semaphore<10> sem_a{0};
+counting_semaphore<10> sem_b{0};
+counting_semaphore<10> sem_c{0};
+counting_semaphore<10> sem_d{0};
+counting_semaphore<10> sem_e{0};
+counting_semaphore<10> sem_f{0};
+counting_semaphore<10> sem_g{0};
+counting_semaphore<10> sem_h{0};
+counting_semaphore<10> sem_i{0};
 
 void f(char name, int index) 
 {
-    std::osyncstream(std::cout) << "Action " << index << " from set " << name << " executed.\n";
-    std::this_thread::sleep_for(std::chrono::milliseconds(10)); 
+    osyncstream(cout) << "Action " << index << " from set " << name << " executed.\n";
+   this_thread::sleep_for(chrono::milliseconds(10)); 
 }
 
 void run_action_set(char name, int count) 
@@ -89,4 +89,28 @@ void worker5()
     sem_d.acquire(); 
     run_action_set('g', count_g);
     run_action_set('j', count_j);
+}
+
+int main() 
+{
+    cout << "Calculation started." << endl;
+
+   vector<thread> threads;
+    
+    threads.emplace_back(worker1);
+    threads.emplace_back(worker2);
+    threads.emplace_back(worker3);
+    threads.emplace_back(worker4);
+    threads.emplace_back(worker5);
+
+    for (auto& t : threads) 
+    {
+        if (t.joinable()) 
+        {
+            t.join();
+        }
+    }
+
+   cout << "Calculation finished." << endl;
+    return 0;
 }
