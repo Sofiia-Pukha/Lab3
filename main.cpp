@@ -22,12 +22,8 @@ const int count_k = 5;
 
 counting_semaphore<10> sem_a{0};
 counting_semaphore<10> sem_b{0};
-counting_semaphore<10> sem_c{0};
 counting_semaphore<10> sem_d{0};
 counting_semaphore<10> sem_e{0};
-counting_semaphore<10> sem_f{0};
-counting_semaphore<10> sem_g{0};
-counting_semaphore<10> sem_h{0};
 counting_semaphore<10> sem_i{0};
 
 void f(char name, int index) 
@@ -69,7 +65,6 @@ void worker3()
     run_action_set('c', count_c);
     sem_b.acquire(); 
     run_action_set('f', count_f);
-    sem_f.release(); 
     
     sem_e.acquire();
     run_action_set('i', count_i);
@@ -80,6 +75,7 @@ void worker4()
 {
     sem_d.acquire(); 
     run_action_set('h', count_h);
+    
     sem_i.acquire();
     run_action_set('k', count_k);
 }
